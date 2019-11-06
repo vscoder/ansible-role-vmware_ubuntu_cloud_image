@@ -11,10 +11,11 @@
     - echo "Provisioned at `date +'%Y-%m-%d %H:%M:%S'`" | tee /etc/provisioned
   ```
 
-### Chandes
+### Changes
 
 - Set ipv4 address by `runcmd` command `ifconfig ens192 {{ static_ipv4 }}/{{ netmask }}`
   if variable `force_static_ipv4` is true
+- Wait ssh connection for `poweron_timeout` seconds when `force_static_ipv4` is true
 
 ## v3.0.0 (2019-05-17)
 

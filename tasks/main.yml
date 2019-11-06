@@ -64,6 +64,11 @@
     wait_for_ip_address: yes
   delegate_to: localhost
 
+- name: Wait 600 seconds for target connection to become reachable/usable
+  wait_for_connection:
+    timeout: "{{ poweron_timeout }}"
+  when: force_static_ipv4
+
 - name: gather vm facts
   vmware_guest_facts:
     hostname: "{{ vcenter_hostname | default(omit) }}"
@@ -85,5 +90,4 @@
 
 - name: gather host facts
   setup:
-
 # vim: ts=2:sw=2:noautoindent:nosmartindent

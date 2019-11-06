@@ -104,7 +104,7 @@ To use a static IP address, use the following keys in the dictionary `static_ip`
 - `dns_search` - a list of domain names that should be used as DNS search suffixes.
    Use this to put your VM in a domain.
 
-To force set ipv4 address by `runcmd` command `ifconfig ens192 {{ static_ipv4 }}/{{ netmask }}`, set `force_static_ipv4` to `true`.
+To force set ipv4 address by `runcmd` command `ifconfig ens192 {{ static_ipv4 }}/{{ netmask }}`, set `force_static_ipv4` to `true`. Wait ssh connection for `poweron_timeout` seconds when `force_static_ipv4` is true
 
 To run custom commands via cloud-init, use `runcmd`. Example:
 ```yaml

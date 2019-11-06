@@ -9,4 +9,7 @@ default_dns_servers: [8.8.8.8, 8.8.4.4]
 
 # if true, ipv4 addres was set by runcmd: command via cloud-init
 force_static_ipv4: no
+
+# time to wait connection after VM power_on
+poweron_timeout: 300
 # vim: ts=2:sw=2:noautoindent:nosmartindent
