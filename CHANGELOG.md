@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.0.1 (2019-11-06)
+
+### Fix
+
+- Fix [templates/user-data.j2](templates/user-data.j2) syntax
+
 ## v4.0.0 (2019-11-06)
 
 ### Features
