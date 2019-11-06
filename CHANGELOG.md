@@ -1,5 +1,21 @@
 # Changelog
 
+## v4.0.0 (2019-11-06)
+
+### Features
+
+- Allow run list of custom commands via `runcmd` variable
+  Example:
+  ```yaml
+  runcmd:
+    - echo "Provisioned at `date +'%Y-%m-%d %H:%M:%S'`" | tee /etc/provisioned
+  ```
+
+### Chandes
+
+- Set ipv4 address by `runcmd` command `ifconfig ens192 {{ static_ipv4 }}/{{ netmask }}`
+  if variable `force_static_ipv4` is true
+
 ## v3.0.0 (2019-05-17)
 
 ### Features

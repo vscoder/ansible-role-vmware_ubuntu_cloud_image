@@ -102,7 +102,15 @@ To use a static IP address, use the following keys in the dictionary `static_ip`
 - `gateway` - the default gateway (required)
 - `dns_servers` - a list of the DNS servers' IP addresses, defaults to Google's public DNS servers.
 - `dns_search` - a list of domain names that should be used as DNS search suffixes.
-   Use this to put your VM in a domain. 
+   Use this to put your VM in a domain.
+
+To force set ipv4 address by `runcmd` command `ifconfig ens192 {{ static_ipv4 }}/{{ netmask }}`, set `force_static_ipv4` to `true`.
+
+To run custom commands via cloud-init, use `runcmd`. Example:
+```yaml
+runcmd:
+  - echo "Provisioned at `date +'%Y-%m-%d %H:%M:%S'`" | tee /etc/provisioned
+```
 
 ### Inventory Settings
 

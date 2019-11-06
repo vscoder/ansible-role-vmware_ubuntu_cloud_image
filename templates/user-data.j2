@@ -11,3 +11,14 @@ ssh_authorized_keys:
   - {{ key }}
 {% endfor %}
 {% endif %}
+
+runcmd:
+  - echo "Provisioned at `date +'%Y-%m-%d %H:%M:%S'`"
+{% if force_static_ipv4 %}}
+  - ifconfig ens192 {{ static_ipv4 }}/{{ netmask }}
+{% endif %}}
+{% if runcmd is defined %}}
+{% for cmd in runcmd %}}
+  - {{ cmd }}
+{% endfor %}
+{% endif %}
