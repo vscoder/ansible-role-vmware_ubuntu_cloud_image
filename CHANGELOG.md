@@ -1,10 +1,11 @@
 # Changelog
 
-## v4.0.1 (2019-11-06)
+## v4.0.2 (2019-11-06)
 
 ### Fix
 
 - Fix [templates/user-data.j2](templates/user-data.j2) syntax
+- Fix [tasks/main.yml](tasks/main.yml) name for task `wait_for_connection`
 
 ## v4.0.0 (2019-11-06)
 
