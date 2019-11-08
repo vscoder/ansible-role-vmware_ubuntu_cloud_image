@@ -6,6 +6,10 @@
 
 - Add `Makefile` and targets to do `molecule lint` and `molecule syntax`
 
+### Fix
+
+- Fix condition in [tasks/main.yml](tasks/main.yml) task name: Remove VM "{{ vm_name }}" if exists
+
 ## v4.1.0 (2019-11-08)
 
 ### Feature

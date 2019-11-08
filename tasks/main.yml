@@ -27,7 +27,7 @@
     name: "{{ vm_guestname }}"
     state: absent
   delegate_to: localhost
-  when: replace_existing_vm and vm_found | boolean
+  when: replace_existing_vm and vm_found | length == 0
 
 - name: deploy OVA file
   tags: deploy-ova
