@@ -1,5 +1,12 @@
 # Changelog
 
+## v4.2.1 (2019-11-08)
+
+### Fix
+
+- Fix condition in [tasks/main.yml](tasks/main.yml) task name: Remove VM "{{ vm_name }}" if exists
+- Poweroff VM before deletion
+
 ## v4.2.0 (2019-11-08)
 
 ### Feature

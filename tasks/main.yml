@@ -15,10 +15,22 @@
     validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
     name: "{{ vm_guestname }}"
   delegate_to: localhost
+  failed_when: false
   register: vm_found
   when: replace_existing_vm
 
-- name: Remove VM "{{ vm_name }}" if exists
+- name: Poweroff VM "{{ vm_guestname }}" if exists
+  vmware_guest:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    name: "{{ vm_guestname }}"
+    state: poweredoff
+  delegate_to: localhost
+  when: replace_existing_vm and 'folders' in vm_found and vm_found.folders | length == 1
+
+- name: Remove VM "{{ vm_guestname }}"
   vmware_guest:
     hostname: "{{ vcenter_hostname | default(omit) }}"
     username: "{{ vcenter_username | default(omit) }}"
@@ -27,7 +39,7 @@
     name: "{{ vm_guestname }}"
     state: absent
   delegate_to: localhost
-  when: replace_existing_vm and vm_found | length == 0
+  when: replace_existing_vm and 'folders' in vm_found and vm_found.folders | length == 1
 
 - name: deploy OVA file
   tags: deploy-ova
