@@ -85,6 +85,8 @@ Role Variables
 
 ### VM Settings
 
+- If set `replace_existing_vm` to `yes`, the virtual machine will be deleted before creating a new one
+
 - The machine's hostname is `inventory_hostname_short` by default. It can be changed with `vm_hostname`.
 - Use `ssh_keys` to set a list of public keys that will be added to the *authorized_keys* file of the user "ubuntu".
   At least one of `ssh_keys` and `password` has to be specified so that Ansible can connect to the new machine.

@@ -12,4 +12,7 @@ force_static_ipv4: no
 
 # time to wait connection after VM power_on
 poweron_timeout: 300
+
+# replace existing vm
+replace_existing_vm: no
 # vim: ts=2:sw=2:noautoindent:nosmartindent

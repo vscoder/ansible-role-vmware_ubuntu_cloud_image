@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.1.0 (2019-11-08)
+
+### Feature
+
+- Delete existing vm before creation new one (if `replace_existing_vm` is true)
+
 ## v4.0.2 (2019-11-06)
 
 ### Fix

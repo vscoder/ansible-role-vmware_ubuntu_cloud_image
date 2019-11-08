@@ -7,6 +7,28 @@
   when: ssh_keys is undefined and password is undefined
   run_once: true
 
+- name: Find Guest's Folder using name
+  vmware_guest_find:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    name: "{{ vm_guestname }}"
+  delegate_to: localhost
+  register: vm_found
+  when: replace_existing_vm
+
+- name: Remove VM "{{ vm_name }}" if exists
+  vmware_guest:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    name: "{{ vm_guestname }}"
+    state: absent
+  delegate_to: localhost
+  when: replace_existing_vm and vm_found | boolean
+
 - name: deploy OVA file
   tags: deploy-ova
   vmware_deploy_ovf:
