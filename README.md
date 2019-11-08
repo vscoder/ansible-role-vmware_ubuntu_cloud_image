@@ -182,6 +182,12 @@ inventory with 5 hosts:
     ansible_password=passw0rd
     ansible_ssh_extra_args=-o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null
 
+| Target                     | Description                                              |
+| -------------------------- | -------------------------------------------------------- |
+| install_ansible_venv       | install ansible into local .venv using `python3 -m venv` |
+| install_ansible_virtualenv | install ansible into local .venv using `virtualenv`      |
+| molecule_static_analyse    | execute `molecule lint` and `molecule syntax`            |
+
 License
 -------
 

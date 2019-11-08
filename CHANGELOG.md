@@ -1,5 +1,11 @@
 # Changelog
 
+## v4.2.0 (2019-11-08)
+
+### Feature
+
+- Add `Makefile` and targets to do `molecule lint` and `molecule syntax`
+
 ## v4.1.0 (2019-11-08)
 
 ### Feature
