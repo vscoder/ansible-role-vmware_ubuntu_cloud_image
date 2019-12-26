@@ -122,6 +122,13 @@
   include: configure-network.yml
   when: static_ip is defined
 
+- meta: reset_connection
+
+- name: ensure IP address is reachable
+  wait_for_connection:
+    connect_timeout: 3
+    timeout: 30
+
 - name: gather host facts
   setup:
 # vim: ts=2:sw=2:noautoindent:nosmartindent
