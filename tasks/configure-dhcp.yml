@@ -1,0 +1,43 @@
+---
+- name: remove cloud-init network configuration file
+  file:
+    path: /etc/netplan/50-cloud-init.yaml
+    state: absent
+  become: yes
+
+- name: create network configuration file
+  template:
+    src: templates/netplan-dhcp.yaml.j2
+    dest: /etc/netplan/60-dhcp.yaml
+  become: yes
+  register: netplan_template
+
+- name: apply network configuration
+  shell: "(sleep 1;netplan apply) &"
+  async: 15
+  poll: 0
+  become: yes
+  when: netplan_template is changed
+
+- name: gather vm facts
+  vmware_guest_facts:
+    hostname: "{{ vcenter_hostname | default(omit) }}"
+    username: "{{ vcenter_username | default(omit) }}"
+    password: "{{ vcenter_password | default(omit) }}"
+    validate_certs: "{{ vcenter_validate_certs | default(omit) }}"
+    datacenter: "{{ vmware_datacenter }}"
+    name: "{{ vm_guestname }}"
+  delegate_to: localhost
+  register: vm_facts
+
+- name: use current IP address (from vm facts)
+  set_fact:
+    ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
+
+- meta: reset_connection
+
+- name: ensure IP address is reachable
+  wait_for_connection:
+    connect_timeout: 3
+    timeout: 30
+# vim: ts=2:sw=2:noautoindent:nosmartindent

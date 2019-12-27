@@ -119,8 +119,12 @@
     ansible_ssh_host: "{{ vm_facts.instance.ipv4 }}"
 
 - name: apply static IP configuration
-  include: configure-network.yml
+  include: configure-static-ip.yml
   when: static_ip is defined
+
+- name: apply dhcp IP configuration
+  include: configure-dhcp.yml
+  when: static_ip is not defined
 
 - meta: reset_connection
 
