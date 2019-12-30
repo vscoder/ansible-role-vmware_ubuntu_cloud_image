@@ -1,5 +1,18 @@
 # Changelog
 
+## v5.1.1 (2019-12-30)
+
+### Fix
+
+- fix task `Disable cloud-init`
+
+## v5.1.0 (2019-12-30)
+
+### Feature
+
+- remove file /etc/machide-id
+- add file /etc/cloud/cloud-init.disabled
+
 ## v4.2.1 (2019-11-08)
 
 ### Fix
