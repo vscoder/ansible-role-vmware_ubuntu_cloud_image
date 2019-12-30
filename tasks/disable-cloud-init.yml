@@ -1,0 +1,10 @@
+---
+- name: Demove /etc/machine-id
+  file:
+    path: /etc/machine-id
+    state: absent
+
+- name: Disable cloud-init
+  file:
+    path: /etc/cloud/cloud-init.disabled
+    state: present

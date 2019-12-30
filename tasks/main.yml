@@ -133,6 +133,10 @@
     connect_timeout: 3
     timeout: 30
 
+- name: disable cloud-init
+  import_tasks: disable-cloud-init.yml
+  become: yes
+
 - name: gather host facts
   setup:
 # vim: ts=2:sw=2:noautoindent:nosmartindent
